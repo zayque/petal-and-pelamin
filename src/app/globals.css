@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@source not "../../legacy";
+
+/* ───────────── Petal & Pelamin design tokens ───────────── */
+@theme {
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-script: var(--font-greatvibes), "Great Vibes", cursive;
+
+  /* primary — blush pink */
+  --color-blush-50: #fff6f8;
+  --color-blush-100: #ffecf1;
+  --color-blush-200: #ffd6e2;
+  --color-blush-300: #fbb6cb;
+  --color-blush-400: #f48fb0;
+  --color-blush-500: #e56b95;
+  --color-blush-600: #cc4f7c;
+  --color-blush-700: #a83c64;
+  --color-blush-800: #7f2f4d;
+  --color-blush-900: #4f1f33;
+
+  /* pastel companions */
+  --color-lilac-100: #f2edff;
+  --color-lilac-200: #e2d8ff;
+  --color-lilac-800: #5b4691;
+  --color-peach-100: #fff0e8;
+  --color-peach-200: #ffdcc9;
+  --color-peach-800: #8f4a26;
+  --color-mint-100: #e5f7ef;
+  --color-mint-200: #c8ecdc;
+  --color-mint-800: #2f6b52;
+
+  /* neutrals */
+  --color-cream: #fffaf8;
+  --color-ink: #3a2731;
+  --color-muted: #7d6570;
+  --color-line: #f3dfe6;
+
+  --radius-xl2: 1.25rem;
+  --shadow-soft: 0 10px 30px -12px rgb(204 79 124 / 0.25);
+  --shadow-card: 0 1px 2px rgb(79 31 51 / 0.04), 0 8px 24px -12px rgb(79 31 51 / 0.12);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(6deg); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    background-image:
+      radial-gradient(60rem 30rem at 110% -10%, rgb(255 214 226 / 0.55), transparent 60%),
+      radial-gradient(50rem 30rem at -10% 10%, rgb(242 237 255 / 0.7), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3 { @apply font-display text-blush-900; letter-spacing: -0.01em; }
+  ::selection { @apply bg-blush-200 text-blush-900; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-blush-500; }
+}
+
+@utility container-pp { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+
+@utility btn {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-linear-to-r from-blush-500 to-blush-600 text-white shadow-soft hover:-translate-y-0.5 hover:from-blush-600 hover:to-blush-700;
+}
+@utility btn-soft { @apply btn bg-blush-100 text-blush-800 hover:bg-blush-200; }
+@utility btn-ghost { @apply btn border border-blush-200 bg-white/70 text-blush-800 backdrop-blur hover:border-blush-300 hover:bg-white; }
+@utility btn-danger { @apply btn bg-white text-red-600 ring-1 ring-red-200 hover:bg-red-50; }
+@utility btn-sm { @apply px-4 py-2 text-xs; }
+
+@utility card { @apply rounded-3xl border border-line bg-white/85 shadow-card backdrop-blur; }
+
+@utility label { @apply mb-1.5 block text-sm font-medium text-ink; }
+@utility input {
+  @apply w-full rounded-2xl border border-blush-200 bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/60 shadow-sm transition focus:border-blush-400 focus:ring-4 focus:ring-blush-100 focus:outline-none;
+}
+@utility field-error { @apply mt-1 text-xs text-red-600; }
+
+@utility chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-blush-200 bg-white px-4 py-2 text-sm font-medium text-blush-800 transition hover:border-blush-400 hover:bg-blush-50;
+}
+@utility chip-active { @apply border-blush-500 bg-blush-500 text-white hover:border-blush-600 hover:bg-blush-600; }
+
+@utility eyebrow { @apply text-xs font-semibold tracking-[0.25em] text-blush-600 uppercase; }
+
+@layer components {
+  .table-pp { @apply w-full text-left text-sm; }
+  .table-pp th { @apply border-b border-line px-4 py-3 text-xs font-semibold tracking-wide text-muted uppercase; }
+  .table-pp td { @apply border-b border-line/70 px-4 py-3 align-middle; }
+  .table-pp tr:last-child td { @apply border-b-0; }
+}
+
+@media print {
+  body { background: white !important; }
+  .no-print { display: none !important; }
+}

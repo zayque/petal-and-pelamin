@@ -1,0 +1,43 @@
+{
+  "name": "petal-and-pelamin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Petal & Pelamin — wedding hall, dais, dress and photobooth booking platform",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:up": "docker compose up -d db adminer",
+    "db:down": "docker compose down",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:reset": "prisma migrate reset --force",
+    "db:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.3",
+    "bcryptjs": "3.0.3",
+    "jose": "6.2.17",
+    "next": "15.5.29",
+    "react": "19.1.10",
+    "react-dom": "19.1.10",
+    "server-only": "0.0.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "22.15.0",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "prisma": "6.19.3",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.20.3",
+    "typescript": "5.9.3"
+  }
+}
